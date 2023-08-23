@@ -1,5 +1,5 @@
 function agendarTurno(nombreDoctor, diasDoctor){
-    console.log('El Dr. ' +nombreDoctor + ' está disponible los dias ' + diasDoctor +'.');
+    console.log('El Dr. ' + nombreDoctor + ' está disponible los dias ' + diasDoctor + '.');
     let diaUsuario = prompt ('¿Que día desea ser antendido/a por el Dr. ' + nombreDoctor + '?');
     diaUsuario = diaUsuario.toLocaleLowerCase();
 
@@ -12,7 +12,7 @@ function agendarTurno(nombreDoctor, diasDoctor){
 
 function turnosMedicos(){
     let nombreUsuario = prompt ('Ingrese su nombre.');
-    console.log ('Bienvenido/a a la Agenda de Turnos Médicos ' + nombreUsuario + '.' );
+    console.log ('Bienvenido/a a la Agenda de Turnos Médicos, ' + nombreUsuario + '.' );
     while ('1','2'){
         console.log('Lista de Dr. disponibles');
         console.log('• 1. Doctor Pérez');
