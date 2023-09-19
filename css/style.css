@@ -1,0 +1,76 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: Oswald;
+}
+/* HEADER */
+header{
+    background-color: #1B4965;
+}
+.navbar{
+    display: flex;
+    margin: 0 1.25em;
+}
+.title{
+    color: #62B6CB;
+    text-decoration: none ;
+}
+.cart-ico svg{
+    color: #62B6CB;
+
+}
+/* MAIN */
+.hero-banner{
+    background-image: url(../img/phone-banner.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:center;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.hero-text{
+    font-size: 9em;
+    color: #062C44;
+    background-color: #5FA8D3;
+    border-radius: 30px;
+    padding: 20px;
+}
+.products{
+    display: flex;
+    justify-content: space-around;
+}
+
+/* FOOTER */
+footer{
+    background-color: #BEE9E8;
+    display: flex;
+    justify-content: space-around;
+}
+.footer-sponsor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+footer h5{
+    font-size: 2.5em;
+    margin-top: 1em;
+}
+.svg-sponsor img{
+    width: 5em;
+    height: 5em;
+    margin: 1.25em;
+}
+.footer-social-media{
+    display:flex;
+    align-items: center;
+}
+.footer-social-media img{
+    margin: 1.25em;
+}
+footer img{
+    width: 4em;
+    color: #1B4965;
+}
