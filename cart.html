@@ -29,11 +29,16 @@
                     </div>
                 </nav>
             </header>
-            <main> 
-                <div id="cartContainer"></div>
-                <h2>your cart</h2>
-                <button id="emptyCartBtn">Empty Cart</button>
-
+            <main>
+                <section class="cart">
+                    <h2 id="titleCart">Cart</h2>
+                    <div id="cartContainer"></div>
+                    <div id="actions">
+                        <button id="deleteCart">Clean your cart</button>
+                        <p id="totalInCart">Total=$0</p>
+                    </div>
+                    <button id="buyBtn">Buy</button>
+                </section> 
             </main>
             <footer>    
                 <div class="footer-sponsor">
@@ -45,9 +50,12 @@
                     </div>
                 </div>
                 <div class="footer-social-media">
-                    <a href="https://www.instagram.com/" target="_blank"><img src="./img/instagram.png" alt="Icon Instagram"></a>
-                    <a href="https://www.facebook.com/" target="_blank"><img src="./img/facebook.png" alt="Icon Facebook"></a>
-                    <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank"><img src="./img/email.png" alt="Icon Email"></a>
+                    <h5>Social Media</h5>
+                    <div>
+                         <a href="https://www.instagram.com/" target="_blank"><img src="./img/instagram.png" alt="Icon Instagram"></a>
+                         <a href="https://www.facebook.com/" target="_blank"><img src="./img/facebook.png" alt="Icon Facebook"></a>
+                         <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank"><img src="./img/email.png" alt="Icon Email"></a>
+                    </div>
                 </div>
             </footer>
             <script src="./js/bootstrap.min.js"></script>

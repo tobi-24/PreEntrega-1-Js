@@ -1,59 +1,78 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let cartContainer = document.getElementById("cartContainer");
+let btnClear = document.getElementById ("deleteCart");
+let total = document.getElementById ("totalInCart");
+let btnBuy = document.getElementById ("buyBtn");
 
+let divCart = document.getElementById ("cartContainer");
 
-function renderCart() {
-    cartContainer.innerHTML = "";
-    
-    for (let item of cart) {
-        let cartItem = document.createElement("div");
-        cartItem.classList.add("cart-item");
-        cartItem.innerHTML = `
-            <img class="cart-item-img" src=${item.img} alt=${item.name}>
-            <div class="cart-item-details">
-                <h3 class="cart-item-title">${item.name}</h3>
-                <p class="cart-item-price">$${item.price}</p>
-                <p class="cart-item-quantity">Quantity: ${item.quantity}</p>
+function showCart (cart){
+   
+    divCart.innerHTML = "";
+
+    if (cart.length === 0){
+        let bodyCart = document.createElement("div");
+        bodyCart.classList.add("body-cart");
+        bodyCart.innerHTML = `<p class="text-action">Your cart is empty</p>`;
+        divCart.appendChild(bodyCart);
+    }
+    else{
+        cart.forEach(product => {
+            let bodyDiv = document.createElement("div");  
+            bodyDiv.classList.add("body-div");
+        
+            bodyDiv.innerHTML = `
+            <div class="product-cart">
+                <img class="cart-img" src=${product.img} alt=${product.name}>
+                <p class="product-quantity">Quantity ${product.quantity}</p>
+                <h3 class="prodcut-title">${product.name}</h3>    
+                <p class="product-price">$${product.price}</p>
+                <button class="trash-button" data-product-id="${product.id}">
+                    <img class="trash-ico" src="../img/trash-fill.svg" alt="Trash Icon">
+                </button>
             </div>
-        `;
-        cartContainer.appendChild(cartItem);
+            `;
+
+            let trashButton = bodyDiv.querySelector(".trash-button");
+            trashButton.addEventListener("click", () => {
+            const productId = trashButton.getAttribute("data-product-id");
+            const productToRemove = cart.find(product => product.id === productId);
+            if (productToRemove) {
+                removeProductFromCart(productToRemove);
+            }
+        });
+
+            divCart.appendChild(bodyDiv);
+        });
     }
+    const totalPrice = cart.reduce((total, product) => total + product.price, 0);
+    total.textContent = `Total: $${totalPrice}`;
 }
 
-function addToCart(product) {
-    let existingProduct = cart.find(item => item.id === product.id);
-    if (existingProduct) {
-        existingProduct.quantity++;
-    } else {
-        cart.push({ ...product, quantity: 1 });
-    }
 
+function removeProductFromCart(productToRemove) {
+
+    cart = cart.filter(product => product.id !== productToRemove.id);
+
+    cartSavedInLocalStorage();
+
+    showCart(cart); 
+}
+function cartSavedInLocalStorage() {
     localStorage.setItem("cart", JSON.stringify(cart));
-
-    renderCart();
 }
 
-
-document.getElementById("emptyCartBtn").addEventListener("click", () => {
+btnClear.addEventListener('click', () =>{
     cart = [];
-    localStorage.removeItem("cart"); 
-    renderCart();
-});
+    cartSavedInLocalStorage();
+    showCart(cart);
+})
 
+showCart(cart);
 
-renderCart();
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    let storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-        cart = JSON.parse(storedCart);
-        renderCart();
-    }
-});
-
-
-
-
-
+btnBuy.addEventListener ('click', ()=>{
+    cart = [];
+    cartSavedInLocalStorage();
+    showCart(cart)
+    divCart.innerHTML = `<p class="text-action">Thanks for your purchase!!</p>`;
+})
