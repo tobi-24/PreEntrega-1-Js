@@ -13,11 +13,11 @@ let products = [
     {name: "Apple Watch SE", id: "appleWatchSE", price: 290000, img: "../img/apple-watch-se.jpg","categorie" : {name: "Watch", id: "watch"}},
     {name: "Samsung Watch 5", id: "samsungWatch5", price: 100000, img: "../img/samsung-watch-5.jpeg","categorie" : {name: "Watch", id: "watch"}}
 ];
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 let productDiv = document.getElementById("productContainer");
 
-for(let product of products){
+for (let product of products){
     let container = document.createElement("div");
     container.classList.add("card-container");
     container.innerHTML = `
@@ -29,10 +29,10 @@ for(let product of products){
     </div>
     `;
     
-    productDiv.appendChild(container);
-    let btnBuy = document.getElementsByClassName("btn-buy");
+    let btnBuy = container.querySelector(".btn-buy");
     btnBuy.addEventListener('click', () => addToCart(product))
-    
+
+    productDiv.appendChild(container);
 }
 
 function addToCart(product){
@@ -44,7 +44,3 @@ function addToCart(product){
         cart.push({...product,quantity:1});
     }
 }
-
-
-
-    
