@@ -1,9 +1,10 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function productLoad (){
+    
     let productDiv = document.getElementById("productContainer");
 
-    fetch('../json/products.json')
+    fetch("./js/products.json")
         .then(response => response.json())
         .then(data => {
             for (let product of data){
@@ -14,13 +15,12 @@ function productLoad (){
                 <div class="card-body">
                     <h3 class="card-title">${product.name}</h3>
                     <p class="card-price">$${product.price}</p>
-                    <a href="cart.html"><button class="btn-buy">ADD TO CART</button></a>
+                    <button class="btn-buy">ADD TO CART</button>
                 </div> 
                 `;
                 
                 let btnBuy = container.querySelector(".btn-buy");
                 btnBuy.addEventListener('click', () => addToCart(product));
-            
                 productDiv.appendChild(container);
             };
         }) 
@@ -28,6 +28,19 @@ function productLoad (){
 
 
 function addToCart(product) {
+    Toastify({
+        text: "Your product has been added.",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", 
+        position: "right", 
+        stopOnFocus: true,
+        style: {
+          background: "linear-gradient(to right, #bee9e8, #1B4965)",
+        },
+        onClick: function(){}
+      }).showToast();
     let existingProduct = cart.find(item => item.id === product.id);
     if (existingProduct){
         existingProduct.quantity++;

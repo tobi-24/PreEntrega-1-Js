@@ -50,7 +50,20 @@ function showCart (cart){
 }
 
 
-function removeProductFromCart(productToRemove) {
+function removeProductFromCart(productToRemove){
+    Toastify({
+        text: "Your product has been eliminated.",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", 
+        position: "right", 
+        stopOnFocus: true,
+        style: {
+          background: "linear-gradient(to right, #FF0000, #891212)",
+        },
+        onClick: function(){}
+      }).showToast();
 
     cart = cart.filter(product => product.id !== productToRemove.id);
 
